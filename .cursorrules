@@ -1,0 +1,30 @@
+# Cursor Project Rules — DOED Website
+
+You are implementing the design specified in PROJECT_SPEC.md. Follow these rules on every task without exception.
+
+## Before any code
+- Read PROJECT_SPEC.md in full before writing code for any page or component.
+- For any animation/motion task, also read ANIMATIONS.md in full first — it defines exact timing, easing, and trigger behavior. Do not invent your own durations, easings, or effects.
+- If PROJECT_SPEC.md or ANIMATIONS.md marks something `TODO-VERIFY` or lists it under "Open Questions"/"confirm scope," do not implement that specific detail — stop and ask instead of guessing a value.
+
+## Scope discipline
+- Only build what the current prompt explicitly asks for. Do not build ahead, do not "also improve" nearby things, do not add sections, animations, pages, or components that weren't requested.
+- Do not add libraries, dependencies, or tools not already in the project without asking first.
+- Do not refactor, rename, restyle, or reorganize existing files/components outside the current task's scope, even if you think it's an improvement.
+- Reuse existing shared components (Header, Footer, Button, Badge, ImageBlob, IconStatCard, TechPill, BulletListItem) rather than creating new one-off versions. If a needed shared component doesn't exist yet, say so before duplicating logic.
+
+## Fidelity to spec
+- Match copy in PROJECT_SPEC.md exactly — do not paraphrase, shorten, or "clean up" text.
+- Match layout order and structure exactly as described per section.
+- Use exact design token values once provided (colors, spacing, radii, font sizes). Do not approximate or pick a "close enough" value.
+- If a copy string, image, or value is missing or unclear in the spec, stop and ask rather than inventing placeholder content that looks plausible.
+
+## Communication
+- After completing a task, summarize only what you changed — file names and a one-line description per file. No extra commentary on unrelated code.
+- If you notice something in the spec that seems wrong or inconsistent, flag it in your response — do not silently "fix" it by making a design decision on the user's behalf.
+
+## Explicitly forbidden without being asked
+- Do not add new pages, routes, or nav items.
+- Do not add SEO meta tags, analytics, testing setup, CI config, or deployment config unless requested.
+- Do not change the design system (colors/type/spacing) once tokens are set.
+- Do not add loading states, animations, or micro-interactions beyond what's described, unless requested.
