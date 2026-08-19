@@ -27,7 +27,7 @@ export function PageIntro({
           ) : null}
         </Reveal>
       </div>
-      <div className="mx-auto mt-10 max-w-[70rem] border-t border-navy-900/10 md:mt-14" />
+      <div className="mx-auto mt-10 max-w-[70rem] border-t border-line md:mt-14" />
     </section>
   );
 }

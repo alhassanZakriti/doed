@@ -1,84 +1,57 @@
 "use client";
 
-import { useState } from "react";
 import {
-  IconChevron,
+  IconBolt,
   IconCloud,
   IconCode,
   IconCycle,
   IconHeadset,
   IconShield,
 } from "@/components/icons";
+import { useLocale } from "@/components/LocaleProvider";
+import { useState } from "react";
+import { IconChevron } from "@/components/icons";
 
-const items = [
-  {
-    title: "Software Development & AI",
-    defaultOpen: true,
-    icon: IconCode,
-    description:
-      "Custom software, web applications, and intelligent automation. From API integrations to full SaaS platforms and AI implementations (LLM/RAG). Tech: .NET · Java · PHP · Laravel · React · Angular · Vue.js · Node.js",
-  },
-  {
-    title: "DevOps & Automation",
-    defaultOpen: true,
-    icon: IconCycle,
-    description: "Accelerating time-to-market through automation…",
-  },
-  {
-    title: "Cloud & Infrastructure",
-    defaultOpen: false,
-    icon: IconCloud,
-    description: "Secure, scalable, and stable IT foundations. Design…",
-  },
-  {
-    title: "Cybersecurity & Risk Management",
-    defaultOpen: false,
-    icon: IconShield,
-    description: "Protection against digital threats and compliance…",
-  },
-  {
-    title: "IT Support & Helpdesk",
-    defaultOpen: false,
-    icon: IconHeadset,
-    description: undefined,
-  },
-];
+const icons = [IconCode, IconCloud, IconCycle, IconShield, IconBolt, IconHeadset];
+const defaultOpen = [true, false, false, false, false, false];
 
 export function ConceptAccordion() {
-  const [open, setOpen] = useState<Record<string, boolean>>(() =>
-    Object.fromEntries(items.map((item) => [item.title, item.defaultOpen])),
+  const { t } = useLocale();
+  const items = t.services.map((service, index) => ({
+    ...service,
+    icon: icons[index] ?? IconCode,
+    defaultOpen: defaultOpen[index] ?? false,
+  }));
+
+  const [open, setOpen] = useState<Record<number, boolean>>(() =>
+    Object.fromEntries(items.map((item, index) => [index, item.defaultOpen])),
   );
 
   return (
-    <div className="grid gap-2 rounded-card bg-navy-900 p-5 text-white md:grid-cols-2 md:p-8">
-      {items.map((item) => {
+    <div className="grid gap-2 rounded-card bg-navy-900 p-5 text-white panel-navy md:grid-cols-2 md:p-8">
+      {items.map((item, index) => {
         const Icon = item.icon;
-        const isOpen = open[item.title];
-        const canExpand = Boolean(item.description);
+        const isOpen = open[index];
 
         return (
-          <div key={item.title} className="border-b border-white/10 py-4 last:border-b-0 md:even:border-b md:[&:nth-last-child(-n+1)]:border-b-0">
+          <div
+            key={item.title}
+            className="border-b border-white/10 py-4 last:border-b-0 md:even:border-b md:[&:nth-last-child(-n+1)]:border-b-0"
+          >
             <button
               type="button"
-              className="flex min-h-11 w-full items-start gap-3 text-left"
+              className="flex min-h-11 w-full items-start gap-3 text-start"
               aria-expanded={isOpen}
-              onClick={() => {
-                if (!canExpand) return;
-                setOpen((current) => ({ ...current, [item.title]: !current[item.title] }));
-              }}
+              onClick={() => setOpen((current) => ({ ...current, [index]: !current[index] }))}
             >
               <span className="mt-0.5 text-orange-500">
                 <Icon className="h-5 w-5" />
               </span>
               <span className="flex-1 text-base font-semibold">{item.title}</span>
-              {canExpand ? (
-                <IconChevron className="mt-0.5 h-5 w-5 shrink-0 text-white/70" open={isOpen} />
-              ) : (
-                <IconChevron className="mt-0.5 h-5 w-5 shrink-0 text-white/70" open={false} />
-              )}
+              <IconChevron className="mt-0.5 h-5 w-5 shrink-0 text-white/70" open={isOpen} />
             </button>
-            {canExpand && isOpen ? (
-              <p className="mt-3 pl-8 text-sm leading-relaxed text-white/75">{item.description}</p>
+            {isOpen ? (
+              <p className="mt-3 ps-8 text-sm leading-relaxed text-white/75">{item.description}</p>
             ) : null}
           </div>
         );

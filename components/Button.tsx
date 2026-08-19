@@ -7,10 +7,10 @@ import { IconArrow } from "@/components/icons";
 type Variant = "primary" | "outline" | "primary-invert" | "outline-invert";
 
 const variantClass: Record<Variant, string> = {
-  primary: "bg-orange-500 text-white border-2 border-orange-500",
+  primary: "bg-orange-500 text-on-accent border-2 border-orange-500",
   outline: "bg-transparent text-orange-500 border-2 border-orange-500",
-  "primary-invert": "bg-white text-orange-500 border-2 border-white",
-  "outline-invert": "bg-transparent text-white border-2 border-white",
+  "primary-invert": "bg-white text-orange-500 border-2 border-white dark:text-navy-900",
+  "outline-invert": "bg-transparent text-white border-2 border-white dark:text-navy-900 dark:border-navy-900",
 };
 
 export function Button({
@@ -20,6 +20,7 @@ export function Button({
   className = "",
   type = "button",
   entrance,
+  disabled = false,
 }: {
   href?: string;
   variant?: Variant;
@@ -27,6 +28,7 @@ export function Button({
   className?: string;
   type?: "button" | "submit";
   entrance?: "1" | "2";
+  disabled?: boolean;
 }) {
   const [flashing, setFlashing] = useState(false);
   const label = typeof children === "string" ? children : null;
@@ -37,7 +39,7 @@ export function Button({
     window.setTimeout(() => setFlashing(false), 450);
   };
 
-  const classes = `btn inline-flex min-h-11 items-center justify-center rounded-button px-6 py-3 text-sm font-bold ${variantClass[variant]} ${entrance === "1" ? "btn-1" : ""} ${entrance === "2" ? "btn-2" : ""} ${className}`;
+  const classes = `btn inline-flex min-h-11 items-center justify-center rounded-button px-6 py-3 text-sm font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${variantClass[variant]} ${entrance === "1" ? "btn-1" : ""} ${entrance === "2" ? "btn-2" : ""} ${className}`;
 
   const inner = label ? (
     <span className="btn-label-row">
@@ -62,7 +64,7 @@ export function Button({
   }
 
   return (
-    <button type={type} className={classes} onClick={handleClick}>
+    <button type={type} className={classes} onClick={handleClick} disabled={disabled}>
       {inner}
     </button>
   );

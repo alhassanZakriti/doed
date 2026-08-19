@@ -35,8 +35,8 @@ function LogoTile({ logo }: { logo: Logo }) {
         src={logo.src}
         alt={logo.name}
         fill
-        className="object-contain p-[10%]"
-        sizes="(min-width: 1024px) 12vw, (min-width: 640px) 18vw, 28vw"
+        className="rounded-[inherit] object-contain p-[22%]"
+        sizes="48px"
         draggable={false}
       />
     </div>

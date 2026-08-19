@@ -1,0 +1,1 @@
+export const localeInitScript = `(function(){try{var stored=localStorage.getItem("doed-locale");var locale=stored==="en"||stored==="nl"||stored==="fr"||stored==="ar"?stored:"en";document.documentElement.lang=locale;document.documentElement.dir=locale==="ar"?"rtl":"ltr";}catch(e){}})();`;

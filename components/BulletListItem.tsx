@@ -58,10 +58,10 @@ export function BulletListItem({
             <stop stopColor="#FB8500" />
             <stop offset="1" stopColor="#FB8500" stopOpacity="0" />
           </linearGradient>
-          <linearGradient id={`paint2_${id}`} x1="22.2154" y1="9.90769" x2="25.9692" y2="39.5692" gradientUnits="userSpaceOnUse">
+          <line id={`paint2_${id}`} x1="22.2154" y1="9.90769" x2="25.9692" y2="39.5692" gradientUnits="userSpaceOnUse">
             <stop stopColor="#FB8500" />
             <stop offset="1" stopColor="#FB8500" stopOpacity="0" />
-          </linearGradient>
+          </line>
         </defs>
       </svg>
 
